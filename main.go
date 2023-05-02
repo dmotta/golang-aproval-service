@@ -36,8 +36,8 @@ func main() {
 
 func RegisterProductRoutes(router *mux.Router) {
 	router.HandleFunc("/api/proyects", controllers.GetProyects).Methods("GET")
-	router.HandleFunc("/api/proyects", controllers.GetProyects).Methods("POST")
 	router.HandleFunc("/api/proyects/{id}", controllers.GetProyectById).Methods("GET")
+	router.HandleFunc("/api/proyects", controllers.CreateProyect).Methods("POST")
 	router.HandleFunc("/api/proyects/{id}", controllers.UpdateProyect).Methods("PUT")
 	router.HandleFunc("/api/proyects/{id}", controllers.DeleteProyect).Methods("DELETE")
 }
