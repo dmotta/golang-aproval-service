@@ -1,0 +1,4 @@
+{
+    "connection_string": "sqlserver://dmotta:clave1234$@dmottasqlserver.database.windows.net?database=dmottatestdb",
+    "port": 8080
+}

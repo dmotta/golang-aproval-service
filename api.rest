@@ -1,0 +1,45 @@
+@host = 127.0.0.1:8080
+
+// Create Product
+POST http://{{host}}/api/proyects HTTP/1.1
+content-type: application/json
+{
+    "idCliente": 1000,
+    "fecha": "random-description",
+    "descripcion": "Proyecto X",
+    "importe": 200,
+    "idEstado": 2,
+    "idUsuario": 10,
+    "fechaCreacion": "random-description",
+    "Activo": true
+}
+
+###
+
+// Get Proyect By ID
+GET http://{{host}}/api/proyects/23 HTTP/1.1
+content-type: application/json
+
+###
+
+// Get All Proyects
+GET http://{{host}}/api/proyects/ HTTP/1.1
+content-type: application/json
+
+###
+
+// Update Proyect
+PUT http://{{host}}/api/proyects/23 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "updated-product",
+    "description": "random-description-updated",
+    "price": 100.00
+}
+
+###
+
+// Delete Proyect
+DELETE http://{{host}}/api/proyects/2 HTTP/1.1
+content-type: application/json
