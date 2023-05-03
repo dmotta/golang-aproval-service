@@ -13,7 +13,12 @@ import (
 func GetProyects(w http.ResponseWriter, r *http.Request) {
 	var proyects []entities.Proyecto
 	log.Println(">>>>>>>>>GetProyects...")
-	database.Instance.Find(&proyects)
+	idEstado := r.URL.Query().Get("idEstado")
+	if len(idEstado) > 0 {
+		database.Instance.First(&proyects, idEstado)
+	} else {
+		database.Instance.Find(&proyects)
+	}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(proyects)
@@ -82,4 +87,16 @@ func checkIfProyectExists(proyectId string) bool {
 		return false
 	}
 	return true
+}
+
+func GetProyectByIdEstado(w http.ResponseWriter, r *http.Request) {
+	idEstado := mux.Vars(r)["idEstado"]
+	if checkIfProyectExists(idEstado) == false {
+		json.NewEncoder(w).Encode("proyect Not Found!")
+		return
+	}
+	var proyect entities.Proyecto
+	database.Instance.First(&proyect, idEstado)
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(proyect)
 }
